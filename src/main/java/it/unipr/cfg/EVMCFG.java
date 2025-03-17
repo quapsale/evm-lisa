@@ -637,28 +637,28 @@ public class EVMCFG extends CFG {
 			JSONArray instructions = block.getJSONArray("instructions");
 
 			StringBuilder label = new StringBuilder();
-			if (instructions.length() > 5) {
-				JSONObject firstInstr = instructions.getJSONObject(0);
-				JSONObject secondInstr = instructions.getJSONObject(1);
-				JSONObject secondLastInstr = instructions.getJSONObject(instructions.length() - 2);
-				JSONObject lastInstr = instructions.getJSONObject(instructions.length() - 1);
+			// if (instructions.length() > 5) {
+			// 	JSONObject firstInstr = instructions.getJSONObject(0);
+			// 	JSONObject secondInstr = instructions.getJSONObject(1);
+			// 	JSONObject secondLastInstr = instructions.getJSONObject(instructions.length() - 2);
+			// 	JSONObject lastInstr = instructions.getJSONObject(instructions.length() - 1);
 
-				label.append(firstInstr.getInt("pc")).append(": ").append(firstInstr.getString("instruction"))
-						.append("\\l");
-				label.append(secondInstr.getInt("pc")).append(": ").append(secondInstr.getString("instruction"))
-						.append("\\l");
-				label.append("...\n");
-				label.append(secondLastInstr.getInt("pc")).append(": ").append(secondLastInstr.getString("instruction"))
-						.append("\\l");
-				label.append(lastInstr.getInt("pc")).append(": ").append(lastInstr.getString("instruction"))
-						.append("\\l");
-			} else {
+			// 	label.append(firstInstr.getInt("pc")).append(": ").append(firstInstr.getString("instruction"))
+			// 			.append("\\l");
+			// 	label.append(secondInstr.getInt("pc")).append(": ").append(secondInstr.getString("instruction"))
+			// 			.append("\\l");
+			// 	label.append("...\n");
+			// 	label.append(secondLastInstr.getInt("pc")).append(": ").append(secondLastInstr.getString("instruction"))
+			// 			.append("\\l");
+			// 	label.append(lastInstr.getInt("pc")).append(": ").append(lastInstr.getString("instruction"))
+			// 			.append("\\l");
+			// } else {
 				for (int j = 0; j < instructions.length(); j++) {
 					JSONObject instr = instructions.getJSONObject(j);
 					label.append(instr.getInt("pc")).append(": ")
 							.append(instr.getString("instruction")).append("\\l");
 				}
-			}
+			// }
 
 			dotGraph.append(String.format(
 					"\t%d [label=\"%s\", shape=box, style=filled, fillcolor=%s];\n",
